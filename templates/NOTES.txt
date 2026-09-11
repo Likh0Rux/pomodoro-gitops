@@ -1,0 +1,9 @@
+{{ include "pomodoro.fullname" . }} è stato installato nel namespace {{ .Release.Namespace }}.
+
+Per verificare lo stato dei pod:
+  kubectl get pods -n {{ .Release.Namespace }} -l app.kubernetes.io/instance={{ .Release.Name }}
+
+Per accedere temporaneamente alla webapp via port-forward:
+  kubectl port-forward svc/{{ include "pomodoro.fullname" . }} -n {{ .Release.Namespace }} 8080:80
+
+Poi apri: http://localhost:8080
